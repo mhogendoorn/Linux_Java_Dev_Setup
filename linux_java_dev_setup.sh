@@ -1,8 +1,6 @@
 echo $'\n'"INSTALL SCRIPT ADDING TOOLS TO UBUNTU MATE 18.10"
-echo $'\n'"What is your name for use in GIT?"
-read YOUR_NAME
-echo $'\n'"What is your email address for use in GIT?"
-read YOUR_EMAIL_ADDRESS
+
+
 
 #allow using .local domains. Kill and remove the avahi service for that
 echo $'\n'"Removing Avahi to be able to use .local domains..."
@@ -108,8 +106,8 @@ echo "--------------------------------------------------------------"
 echo "Here is your public SSH-key:"
 echo "--------------------------------------------------------------"
 cat ~/.ssh/id_rsa.pub
-
 echo " "
+read -p "Press enter to continue..."
 
 echo $'\n'"Installing GIT version control ..."
 sudo apt install git gitg --yes
