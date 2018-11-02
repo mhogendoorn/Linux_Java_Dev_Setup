@@ -125,6 +125,14 @@ sed -i '$ a\    git branch 2> /dev/null | sed -e \x27/^[^*]/d\x27 -e \x27s/* \\(
 sed -i '$ a\}' ~/.bashrc
 sed -i '$ a\export PS1="\\u@\\h \\[\\033[32m\\]\\w\\[\\033[33m\\]\\$(parse_git_branch)\\[\\033[00m\\] $ "' ~/.bashrc
 
+#add GitKraken GUI which is free for open source, early-stage startups and non-commercial use
+echo $'\n'"Installing GitKraken..."
+sudo apt install libgnome-keyring0 --yes
+	wget -O ~/Downloads/gitkraken.deb https://release.gitkraken.com/linux/gitkraken-amd64-18.04.deb
+	sudo dpkg -i ~/Downloads/gitkraken.deb 
+	sudo apt-get install -f --yes 
+	rm ~/Downloads/gitkraken.deb
+echo $'\n'"INSTALLED: GitKraken"
 
 
 echo $'\n'"Installing Synaptic package manager..."
@@ -225,15 +233,15 @@ Comment=
 EOM
 
 ### TEAMVIEWER
-echo "Installing TeamViewer..."
+echo $'\n'"Installing TeamViewer..."
 	wget -O ~/Downloads/teamviewer.deb https://download.teamviewer.com/download/linux/version_14x/teamviewer_amd64.deb 
 	sudo dpkg -i ~/Downloads/teamviewer.deb 
 	sudo apt-get install -f --yes 
 	rm ~/Downloads/teamviewer.deb
-echo "INSTALLED: $(teamviewer --version)"
+echo $'\n'"INSTALLED: $(teamviewer --version)"
 
 ### SKYPE
-echo "Installing Skype..."
+echo $'\n'"Installing Skype..."
 wget -O ~/Downloads/skype.deb http://www.skype.com/go/skypeforlinux-64.deb 
 sudo dpkg -i ~/Downloads/skype.deb
 sudo apt-get install -f --yes 

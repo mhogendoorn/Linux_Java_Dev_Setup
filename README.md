@@ -4,7 +4,7 @@ A script to enrich Ubuntu Mate 18.10 or any other Linux distribution with tools 
 The following will be installed:
 * OpenJDK 11
 * Maven
-* GIT version control with graphical user interface gitg
+* GIT version control, graphical user interface gitg and gitkraken
 * Spring Tool Suite
 * IntelliJ
 * Google Chrome
