@@ -212,6 +212,14 @@ tar xf ~/Downloads/intelliJ.tar.gz -C ~/apps/
 rm ~/Downloads/intelliJ.tar.gz
 echo $'\n'"Installed IntelliJ"
 
+### MySQL installation and making it more secure, asking you for a password ### --
+sudo apt install mysql-server mysql-client mysql-workbench --yes
+sudo mysql_secure_installation
+### making root access to mysql via a password, which is easier
+read -p 'What root password did you set for mysql? : ' ROOT_PASSWORD
+sudo mysql -uroot -p$ROOT_PASSWORD -e "SET GLOBAL validate_password_policy=LOW"
+sudo mysql -uroot -p$ROOT_PASSWORD -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$ROOT_PASSWORD'"
+sudo mysql -uroot -p$ROOT_PASSWORD -e "FLUSH PRIVILEGES"
 
 ### Telegram messenger (first install it on your phone!)
 echo $'\n'"Installing Telegram ... "
