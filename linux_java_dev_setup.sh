@@ -220,6 +220,12 @@ read -p 'What root password did you set for mysql? : ' ROOT_PASSWORD
 sudo mysql -uroot -p$ROOT_PASSWORD -e "SET GLOBAL validate_password_policy=LOW"
 sudo mysql -uroot -p$ROOT_PASSWORD -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$ROOT_PASSWORD'"
 sudo mysql -uroot -p$ROOT_PASSWORD -e "FLUSH PRIVILEGES"
+### getting the jdbc-driver for mysql
+	wget -O ~/Downloads/mysql-connector-java.deb https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java_8.0.13-1ubuntu18.10_all.deb
+	sudo dpkg -i ~/Downloads/mysql-connector-java.deb 
+	sudo apt-get install -f --yes 
+	rm ~/Downloads/mysql-connector-java.deb
+echo $'\n'"MySQL-JDBC-driver available in /usr/share/java/mysql-connector-java-8.0.13.jar"
 
 ### Telegram messenger (first install it on your phone!)
 echo $'\n'"Installing Telegram ... "
