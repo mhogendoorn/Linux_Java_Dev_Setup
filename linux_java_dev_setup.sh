@@ -80,6 +80,9 @@ touchpad-indicator &
 echo $'\n'"Installing gthumb and gedit..."
 sudo apt install gthumb gedit --yes
 
+echo $'\n'"Installing sublime-text..."
+sudo snap install sublime-text
+
 echo $'\n'"Installing OpenJDK-11 ..."
 sudo apt-get install openjdk-11-jdk --yes
 sudo apt-get -f install
@@ -303,6 +306,17 @@ sdk install groovy
 
 #### THEMING ####
 sudo apt-get install gtk2-engines-murrine gtk2-engines-pixbuf --yes
+
+### DOCKER ###
+sudo snap install docker
+echo $'\n'"INSTALLED: $(docker --version)"
+
+### Docker tools ###
+wget -O ~/Downloads/kitematic.zip https://github.com/docker/kitematic/releases/download/v0.17.5/Kitematic-0.17.5-Ubuntu.zip
+unzip ~/Downloads/kitematic.zip -d ~/Downloads/
+sudo dpkg -i ~/Downloads/Kitematic-0.17.5_amd64.deb
+rm ~/Downloads/Kitematic-0.17.5_amd64.deb
+rm ~/Downloads/kitematic.zip 
 
 
 
