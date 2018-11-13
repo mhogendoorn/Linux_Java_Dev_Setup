@@ -309,7 +309,17 @@ sudo apt-get install gtk2-engines-murrine gtk2-engines-pixbuf --yes
 
 ### DOCKER ###
 sudo snap install docker
-echo $'\n'"INSTALLED: $(docker --version)"
+
+# The Docker daemon binds to a Unix socket instead of a TCP port.
+# By default that Unix socket is owned by the user root and other users can only access it using sudo.
+# The Docker daemon always runs as the root user.
+# If you don’t want to preface the docker command with sudo,
+# create a Unix group called docker and add users to it.
+# When the Docker daemon starts, it creates a Unix socket accessible by members of the docker group
+# so you don’t have to preface the docker command with sudo
+sudo groupadd docker
+sudo usermod -aG docker $USER
+echo $'\n'"INSTALLED: $(docker --version). Log out and in, so that your group membership is re-evaluated!"
 
 ### Docker tools ###
 wget -O ~/Downloads/kitematic.zip https://github.com/docker/kitematic/releases/download/v0.17.5/Kitematic-0.17.5-Ubuntu.zip
