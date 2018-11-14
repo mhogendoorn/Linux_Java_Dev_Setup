@@ -83,14 +83,19 @@ sudo apt install gthumb gedit --yes
 echo $'\n'"Installing sublime-text..."
 sudo snap install sublime-text
 
-echo $'\n'"Installing OpenJDK-11 ..."
-sudo apt-get install openjdk-11-jdk --yes
-sudo apt-get -f install
-sed -i '$ a\export IDEA_JDK=/usr/lib/jvm/java-11-openjdk-amd64/' ~/.bashrc
-sed -i '$ a\export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/' ~/.bashrc
-echo "INSTALLED: " 
-echo "$(/usr/lib/jvm/java-11-openjdk-amd64/bin/java -version)"
 
+### JDK 8 and 11 ###
+echo $'\n'"Installing OpenJDK-8 and 11 ..."
+sudo apt-get install openjdk-11-jdk --yes
+sudo apt-get install openjdk-8-jdk --yes
+echo $'\n'"INSTALLED:"$'\n'"$(update-java-alternatives -l)"
+
+# let's pick java8 as default, for IntelliJ
+sudo update-java-alternatives -s java-1.8.0-openjdk-amd64 
+sed -i '$ a\export IDEA_JDK=/usr/lib/jvm/java-8-openjdk-amd64/' ~/.bashrc
+sed -i '$ a\export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/' ~/.bashrc
+
+### MAVEN ###
 echo $'\n'"Installing maven..."
 sudo apt install maven --yes
 mvn
