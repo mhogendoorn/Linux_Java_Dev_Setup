@@ -1,7 +1,5 @@
 echo $'\n'"INSTALL SCRIPT ADDING TOOLS TO UBUNTU MATE 18.10"
 
-
-
 #allow using .local domains. Kill and remove the avahi service for that
 echo $'\n'"Removing Avahi to be able to use .local domains..."
 sudo service avahi-daemon stop
@@ -10,6 +8,8 @@ sudo sudo apt-get remove avahi-daemon --yes
 echo $'\n'"Updating the system..."
 sudo apt-get update
 sudo apt-get upgrade --yes
+
+sudo apt install net-tools --yes
 
 echo $'\n'"Installing Google Chrome browser..."
 wget -O ~/Downloads/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -332,6 +332,30 @@ unzip ~/Downloads/kitematic.zip -d ~/Downloads/
 sudo dpkg -i ~/Downloads/Kitematic-0.17.5_amd64.deb
 rm ~/Downloads/Kitematic-0.17.5_amd64.deb
 rm ~/Downloads/kitematic.zip 
+
+### increase the default swap file to 16G to be able to enable hibernate
+
+# From Ubuntu 18.04 onwards, a swapfile rather than a dedicated swap partition is used. The swap file is named "swapfile". To change the size of this swap file:
+# Disable the swap file and delete it (not really needed as you will overwrite it)
+sudo swapoff /swapfile
+sudo rm  /swapfile
+
+# Create a new swap file of the desired size.
+# Determine the size of your swap file. If you want to make a 4 GB swap file, you will need to write 4 * 1024 blocks of 10242 bytes (= 1 MiB). That will make your count equal to 4 * #1024 = 4096. Create the file of this size with the command
+sudo dd if=/dev/zero of=/swapfile bs=1M count=16384
+
+# Assign it read/write permissions for root only (not strictly needed, but it tightens security)
+sudo chmod 600 /swapfile
+
+#Format the file as swap:
+sudo mkswap /swapfile
+
+#The file will be activated on the next reboot. If you want to activate it for the current session:
+sudo swapon /swapfile
+
+# You can check the swap that is available with the command
+swapon -s 
+
 
 
 
