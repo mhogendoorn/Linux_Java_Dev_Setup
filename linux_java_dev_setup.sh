@@ -9,6 +9,11 @@ echo $'\n'"Updating the system..."
 sudo apt-get update
 sudo apt-get upgrade --yes
 
+echo $'\n'"Love for Unity won't die..."
+sudo apt install ubuntu-unity-desktop --yes
+sudo apt install lightdm --yes
+sudo dpkg-reconfigure lightdm --yes
+
 sudo apt install net-tools --yes
 
 echo $'\n'"Installing Google Chrome browser..."
